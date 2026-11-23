@@ -1,6 +1,6 @@
 # Principled Static Reframing in Motion Transfer with Video Diffusion Models
 
-[Project page](https://dg-lee23.github.io/reframing-page/)
+[Project page](https://dg-lee23.github.io/principled-reframing-project-page/)
 
 Motion transfer copies the motion of a *reference* video into a new video. Reframing is a training-free method that lets you also change
 the video *framing*: move the subject, zoom in or out, rotate, or change the perspective. 
