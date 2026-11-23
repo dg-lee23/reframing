@@ -1,0 +1,39 @@
+device: 'cuda'
+seed: null
+output_path: 'results/retriever'
+data_path: 'data/retriever'
+latents_path: 'data/retriever/ddim_latents'
+source_prompt: "Amazing quality, masterpiece, A retriever moving its head on a couch"
+target_prompt: "Amazing quality, masterpiece, A lion moving its head in the wild"
+negative_prompt: "bad quality, distortions, unrealistic, distorted image, watermark, signature"
+guidance_scale: 10
+
+# reframing: None, shift, resize, warp or rotate
+transformation: shift
+shift_frac: [0, 0.25]   # (down, right), as a fraction of the frame
+
+with_lr_decay: True
+optim_lr: 0.01
+scale_range: [0.005 , 0.002]
+optimization_steps: 10
+
+max_frames: 16
+n_timesteps: 50
+max_guidance_timestep: 1
+min_guidance_timestep: 0.6
+features_loss_weight: 0
+global_averaging: True
+features_diff_loss_weight: 1
+
+restart_sampling: True
+random_init: False
+high_freq_replacement_init: True
+downsample_factor: 4
+
+use_upsampler_features: True
+use_temporal_attention_features: True
+use_spatial_attention_features: True
+use_conv_features: True
+use_temp_conv_features: True
+up_res_dict: {1: [1]}
+guidance_before_res: True

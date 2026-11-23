@@ -1,0 +1,14 @@
+diffusers==0.20.1
+transformers>=4.30.0,<4.40.0
+huggingface-hub>=0.16.4,<0.25.0
+pillow
+omegaconf
+einops
+tqdm
+opencv-python
+accelerate
+imageio
+imageio-ffmpeg
+timm
+av==12.0.0
+kornia

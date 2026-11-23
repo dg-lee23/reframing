@@ -1,0 +1,8 @@
+/models
+/inversion
+/results
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+baselines/*/results/
+baselines/dmt/data/
