@@ -2,9 +2,8 @@
 
 [Project page](https://dg-lee23.github.io/reframing-page/)
 
-Motion transfer copies the motion of a source video into a new video. Reframing lets you also change
-how the shot is framed: move the subject, zoom in or out, rotate, or change the viewpoint. We do this
-by transforming the source features that guide generation, so no training is needed.
+Motion transfer copies the motion of a *reference* video into a new video. Reframing is a training-free method that lets you also change
+the video *framing*: move the subject, zoom in or out, rotate, or change the perspective. 
 
 The main code is built on [MotionClone](https://github.com/LPengYang/MotionClone) with AnimateDiff v3.
 We also include reframing for [Ctrl-X](https://github.com/genforce/ctrl-x) and
@@ -20,13 +19,12 @@ pip install -r requirements.txt --extra-index-url https://download.pytorch.org/w
 bash download_models.sh
 ```
 
-`download_models.sh` puts everything in `models/`: Stable Diffusion 1.5, AnimateDiff v3,
-Realistic Vision V6.0 and CameraCtrl.
+`download_models.sh` puts the necessary checkpoints in `models/`: Stable Diffusion 1.5, AnimateDiff v3,Realistic Vision V6.0, and CameraCtrl.
 
 ## Usage
 
 Each config describes one source video and the prompts. First invert the video (once per config),
-then generate:
+then generate with the desired reframing:
 
 ```bash
 python invert.py --config configs/examples/fox_snow.yaml
@@ -40,12 +38,12 @@ The result is saved to `results/`. Reframing options:
 | `shift` | moves the subject | frame / factor (default 4) | up, down, left, right |
 | `resize` | zoom in (>1) or out (<1) | area ratio, e.g. 2.0 or 0.5 | - |
 | `rotate` | rotates the frame | degrees, counter-clockwise | - |
-| `warp` | changes the viewpoint | - | left, right, down |
-| `time` | zoom or pan that changes over time | end zoom (default 4) or frame / factor | set for a pan |
+| `warp` | changes the perspective | - | left, right, down |
 
-Leave out `--transform` for plain motion transfer.
+Leave out `--transform` for plain (default) motion transfer.
 
-If you run out of GPU memory, add `--grad-ckpt`. It is slower but uses much less memory.
+For a 320x320x16 video, about 22GB of VRAM is required. If you run out of GPU memory, add `--grad-ckpt`. It is slower but uses much less memory.
+
 
 ### With CameraCtrl
 
@@ -61,7 +59,8 @@ change them in the config and invert again.
 
 ## Baselines
 
-`baselines/ctrl-x` and `baselines/dmt` have their own environments. See the README in each folder.
+See each README files in `baselines/ctrl-x` and `baselines/dmt`, as they have their own environments.
+The DMT baseline provides the best motion fidelity, and Ctrl-X baseline the best video quality with much less memory.
 
 ## Acknowledgements
 
